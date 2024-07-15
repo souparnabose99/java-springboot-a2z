@@ -71,7 +71,8 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public Category updateCategory(Category category, Long categoryId) {
+    //public Category updateCategory(Category category, Long categoryId) {
+    public CategoryDTO updateCategory(CategoryDTO categoryDTO, Long categoryId) {
         //List<Category> categories = categoryRepository.findAll();
         //Optional<Category> savedCategoryOptional = categoryRepository.findById(categoryId);
         //Optional<Category> optionalCategory = categories.stream().
@@ -85,10 +86,13 @@ public class CategoryServiceImpl implements CategoryService{
         //            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found");
         //        }
         //Category savedCategory =  categoryRepository.findById(categoryId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Resource not found"));
+        //Category savedCategory =  categoryRepository.findById(categoryId).orElseThrow(() -> new ResourceNotFoundException("Category", "categoryId", categoryId));
         Category savedCategory =  categoryRepository.findById(categoryId).orElseThrow(() -> new ResourceNotFoundException("Category", "categoryId", categoryId));
+        Category category = modelMapper.map(categoryDTO, Category.class);
         category.setCategoryId(categoryId);
         savedCategory = categoryRepository.save(category);
-        return savedCategory;
+        //return savedCategory;
+        return modelMapper.map(savedCategory, CategoryDTO.class);
 
     }
 
