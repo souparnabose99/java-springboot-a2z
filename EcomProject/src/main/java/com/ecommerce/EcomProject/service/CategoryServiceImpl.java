@@ -26,7 +26,11 @@ public class CategoryServiceImpl implements CategoryService{
     @Override
     public List<Category> getAllCategories(){
         //return categories;
-        return categoryRepository.findAll();
+        List<Category> savedCategories = categoryRepository.findAll();
+        if (savedCategories.isEmpty())
+            throw new ApiException("No categories created till now !!");
+        //return categoryRepository.findAll();
+        return savedCategories;
     }
 
     @Override
