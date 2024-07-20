@@ -20,8 +20,7 @@ public class CategoryServiceImpl implements CategoryService{
     private CategoryRepository categoryRepository;
 
     //private List<Category> categories = new ArrayList<>();
-
-    private Long nextId = 1L;
+    //private Long nextId = 1L;
 
     @Override
     public List<Category> getAllCategories(){
@@ -38,7 +37,7 @@ public class CategoryServiceImpl implements CategoryService{
         Category savedCategory = categoryRepository.findByCategoryName(category.getCategoryName());
         if (savedCategory != null)
             throw new ApiException("Category with the name " + category.getCategoryName() + " already exists !!");
-        category.setCategoryId(nextId++);
+        //category.setCategoryId(nextId++);
         //categories.add(category);
         categoryRepository.save(category);
     }
