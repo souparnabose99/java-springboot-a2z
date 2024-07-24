@@ -8,7 +8,8 @@ import java.util.List;
 
 public interface CategoryService {
     //List<Category> getAllCategories();
-    CategoryResponse getAllCategories();
+    //CategoryResponse getAllCategories();
+    CategoryResponse getAllCategories(Integer pageNumber, Integer pageSize);
     //void createCategory(Category category);
     CategoryDTO createCategory(CategoryDTO categoryDTO);
     //String deleteCategory(Long categoryId);
