@@ -31,6 +31,9 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService(){
         UserDetails user1 = User.withUsername("user").
                 password("{noop}password").roles("USER").build();
+        UserDetails user2 = User.withUsername("admin").
+                password("{noop}admin").roles("ADMIN").build();
+
         return new InMemoryUserDetailsManager(user1);
     }
 }
