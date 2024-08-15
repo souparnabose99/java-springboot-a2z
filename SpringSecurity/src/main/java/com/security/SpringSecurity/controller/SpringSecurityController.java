@@ -10,4 +10,14 @@ public class SpringSecurityController {
     public String basicController(){
         return "Spring security demo !!";
     }
+
+    @GetMapping("/user")
+    public String userEndpoint(){
+        return "Hello User !!";
+    }
+
+    @GetMapping("/admin")
+    public String adminEndpoint(){
+        return "Hello Admin !!";
+    }
 }
