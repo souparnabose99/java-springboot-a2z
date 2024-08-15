@@ -1,5 +1,6 @@
 package com.security.SpringSecurity.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,6 +12,7 @@ public class SpringSecurityController {
         return "Spring security demo !!";
     }
 
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/user")
     public String userEndpoint(){
         return "Hello User !!";
