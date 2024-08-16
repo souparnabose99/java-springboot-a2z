@@ -32,9 +32,9 @@ public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService(){
         UserDetails user1 = User.withUsername("user").
-                password("{noop}password").roles("USER").build();
+                password("{noop}userpassword").roles("USER").build();
         UserDetails user2 = User.withUsername("admin").
-                password("{noop}admin").roles("ADMIN").build();
+                password("{noop}adminpassword").roles("ADMIN").build();
 
         return new InMemoryUserDetailsManager(user1);
     }
