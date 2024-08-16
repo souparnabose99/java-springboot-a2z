@@ -18,6 +18,7 @@ public class SpringSecurityController {
         return "Hello User !!";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/admin")
     public String adminEndpoint(){
         return "Hello Admin !!";
