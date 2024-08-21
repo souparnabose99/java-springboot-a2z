@@ -12,6 +12,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
@@ -44,14 +46,21 @@ public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService(){
         UserDetails user1 = User.withUsername("user").
-                password("{noop}userpassword").roles("USER").build();
+                password(passwordEncoder().encode("userpassword")).roles("USER").build();
+                //password("{noop}userpassword").roles("USER").build(); -> {noop} means no password encoding
         UserDetails adminUser = User.withUsername("admin").
-                password("{noop}adminpassword").roles("ADMIN").build();
+                password(passwordEncoder().encode("adminpassword")).roles("ADMIN").build();
+                //password("{noop}adminpassword").roles("ADMIN").build();
 
         JdbcUserDetailsManager userDetailsManager =  new JdbcUserDetailsManager(dataSource);
         //return new InMemoryUserDetailsManager(user1);
         userDetailsManager.createUser(user1);
         userDetailsManager.createUser(adminUser);
         return userDetailsManager;
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 }
