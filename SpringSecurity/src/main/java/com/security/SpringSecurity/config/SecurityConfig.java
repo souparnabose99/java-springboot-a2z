@@ -48,7 +48,7 @@ public class SecurityConfig {
         UserDetails adminUser = User.withUsername("admin").
                 password("{noop}adminpassword").roles("ADMIN").build();
 
-        JdbcUserDetailsManager userDetailsManager =  new JdbcUserDetailsManager();
+        JdbcUserDetailsManager userDetailsManager =  new JdbcUserDetailsManager(dataSource);
         //return new InMemoryUserDetailsManager(user1);
         userDetailsManager.createUser(user1);
         userDetailsManager.createUser(adminUser);
